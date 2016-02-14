@@ -37,7 +37,7 @@
 							<ul>
 								<li><a href="learn-more.html">Learn More</a></li>
 								<li><a href="contact.html">Contact</a></li>
-
+								
                                 <!--
                                 <li><a href="elements.html">Elements</a></li>
 								<li>
@@ -49,7 +49,7 @@
 										<li><a href="#">Option Four</a></li>
 									</ul>
 								</li>
-
+                                
                                 -->
 							</ul>
 						</li>
@@ -65,30 +65,48 @@
 					<p>Tell me what you're thinking.<br /> Any feedback is appreciated.</p>
 				</header>
 				<div class="box">
-					<h3>
-						<center>gvzq<i class="fa fa-at"></i>hotmail.com</center>
-					</h3>
+					<form method="post" action="contact.php">
+						<div class="row uniform 50%">
+							<div class="6u 12u(mobilep)">
+								<input type="text" name="name" id="name" value="" placeholder="Name" />
+							</div>
+							<div class="6u 12u(mobilep)">
+								<input type="email" name="email" id="email" value="" placeholder="Email" />
+							</div>
+						</div>
+						<div class="row uniform 50%">
+							<div class="12u">
+								<input type="text" name="subject" id="subject" value="" placeholder="Subject" />
+							</div>
+						</div>
+						<div class="row uniform 50%">
+							<div class="12u">
+								<textarea name="message" id="message" placeholder="Enter your message" rows="6"></textarea>
+							</div>
+						</div>
+						<div class="row uniform">
+							<div class="12u">
+								<ul class="actions align-center">
+									<li><input type="submit" value="Send Message" /></li>
+								</ul>
+							</div>
+						</div>
+					</form>
 				</div>
 			</section>
 
+		<!-- Footer -->
 			<footer id="footer">
 				<ul class="icons">
-					<!--
 					<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
 					<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
 					<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-					-->
-					<li><a href="https://github.com/gvzq" class="icon fa-github"><span class="label">Github</span></a></li>
-					<!--
+					<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
 					<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
-					-->
 					<li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
 				</ul>
 				<ul class="copyright">
-					<li>&copy; Gerardo. All rights reserved.</li>
-					<p>
-						<font color="white">Design: <a href="http://html5up.net">HTML5 UP</a></font>
-					</p>
+					<li>&copy; Gerardo Vazquez. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 				</ul>
 			</footer>
 
