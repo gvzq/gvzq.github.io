@@ -65,10 +65,9 @@
 				<ul class="actions">
 					<li><a href="https://www.linkedin.com/in/gvzqz" class="button special">Resume</a></li>
 					<li><a href="learn-more.html" class="button">Learn More</a></li>
-					<li>
+					<li id= "customButton"> Purchase 
 					<script src="https://checkout.stripe.com/checkout.js"></script>
-
-<button id="customButton">Purchase</button>
+					<!-- <button id="customButton">Purchase</button> -->
 
 <script>
   var handler = StripeCheckout.configure({
@@ -85,8 +84,8 @@
     // Open Checkout with further options
     handler.open({
       name: 'gvzq.github.io',
-      description: '2 widgets',
-      amount: 2000
+      description: 'Gerardo's Donation,
+      amount: 3.00, 
     });
     e.preventDefault();
   });
