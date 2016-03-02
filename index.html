@@ -66,41 +66,21 @@
 					<li><a href="https://www.linkedin.com/in/gvzqz" class="button special">Resume</a></li>
 					<li><a href="learn-more.html" class="button">Learn More</a></li>
 					<!-- <li id= "customButton" class="button"> Donate </li> -->
-					<script src="https://checkout.stripe.com/checkout.js"></script>
-					 <button id="customButton">Purchase</button>
 
-<script>
-  var handler = StripeCheckout.configure({
-    key: 'pk_test_TafSy4AU7m6R5wphtDBdirLy',
-    image: '/img/documentation/checkout/marketplace.png',
-    locale: 'auto',
-    token: function(token) {
-      // Use the token to create the charge with a server-side script.
-      // You can access the token ID with `token.id`
-    }
-  });
-
-  $('#customButton').on('click', function(e) {
-    // Open Checkout with further options
-    handler.open({
-      name: 'gvzq.github.io',
-      description: 'Gerardo's Donation,
-      amount: 300,
-    });
-    e.preventDefault();
-  });
-
-  // Close Checkout on page navigation
-  $(window).on('popstate', function() {
-    handler.close();
-  });
-</script>
 
 				</ul>
 			</section>
 
 		<!-- Main -->
 			<section id="main" class="container">
+
+				<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+					<input type="hidden" name="cmd" value="_s-xclick">
+					<input type="hidden" name="hosted_button_id" value="75Q5MGMY39JA6">
+					<input type="image" src="https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
+					<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+				</form>
+
 
 				<!--
                 <section class="box special">
