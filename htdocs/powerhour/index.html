@@ -45,7 +45,7 @@
 
 <!-- Timer -->
 <script>
-second = 3;
+second = 60;
 count = 0;
 var quit;
 pause = false;
@@ -62,11 +62,11 @@ function seconds(){
         second--;
         document.getElementById('sec').innerHTML = second;
         if (second == 0){
-            second = 3;
+            second = 60;
             count++;
             document.getElementById('cnt').innerHTML = count;
         }
-        if (count == 3){
+        if (count == 60){
             stop();
         }
     }
@@ -84,8 +84,13 @@ function stop(){
     clearInterval(quit);
     on = false;
     document.getElementById('sec').innerHTML = 0;
-    if (count == 3){
-        alert("Success!");
+    if (count == 60){
+        var res = confirm("Congratulations!\nDo you want to play again?");
+        if (res == true) {
+            start();
+        } else {
+            //nothing maybe donate?
+        }
     }
     document.getElementById('cnt').innerHTML = 0;
 }
