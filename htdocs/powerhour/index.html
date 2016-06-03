@@ -3,7 +3,6 @@
 <head>
   <title>The Power Hour Drinking Game</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="translucent black">
   <meta name="apple-mobile-web-app-title" content="Power Hour">
   <meta name="description" content="">
   <meta name="author" content="Gerardo Vazquez">
@@ -50,9 +49,13 @@ second = 60;
 count = 0;
 var quit;
 pause = false;
+on = false;
 
 function start() {
-    quit = setInterval("seconds()",1000);
+    if (!on){
+        quit = setInterval("seconds()",1000);
+        on = true;
+    }
 }
 function seconds(){
     if (!pause){
