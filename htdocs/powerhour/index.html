@@ -11,97 +11,75 @@
   <link href="css/custom.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
 </head>
-<body id="inicio" data-spy="scroll" data-target=".navbar" data-offset="60" class="row">
 
 <!-- Navbar -->
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top text-center">
   <div class="container">
-    <div class="navbar-header page-scroll">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#inicio">Power Hour</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
-        <!-- <li>Inicio</li>
-        <li class="page-scroll"><a href="#cursos">CURSOS</a></li>
-        <li class="page-scroll"><a href="#ubicacion">UBICACION</a></li>
-        <li class="page-scroll"><a href="#contacto">CONTACTO</a></li> -->
-      </ul>
+      <a class="navbar-brand">Power Hour</a>
     </div>
   </div>
 </nav>
 
 <!-- Jumbotron -->
 <div class="jumbotron text-center">
-  <br>
   <h1>Power Hour</h1>
-  <h4></h4>
-</div>
+  <h1 id="sec">0</h1>
+  <h2><span id="cnt">0</span> of 60</h4>
+  <!-- Alert -->
+  <p><strong>Let the games begin!</strong></p>
+  <!-- Buttons -->
+  <a class="btn btn-success" id="start" type="button" onclick="start()">Start</a>
+  <a class="btn btn-warning" id="pause" type="button" onclick="wait()"><span id="wait">Pause</span></a>
+  <a class="btn btn-danger" id="stop" type="button" onclick="stop()">Stop</a>
 
-<!-- Power Hour Timer -->
-<div class="container text-center" id="cursos">
-    <h2>Timer</h2>
-    <p><strong>Let the games begin!</strong></p>
-
-    <!-- Buttons -->
-    <a class="btn btn-primary btn-lg" role="button">Start</a>
-    <a class="btn btn-danger btn-lg" role="button">Stop</a>
+  <!-- Progress Bars -->
 </div>
 
 <!-- Footer -->
 <footer class="container-fluid bg-4 text-center">
-  <!-- <div class="scroll-top page-scroll hidden-sm-up">
-    <p><a href="#start" title="start"><span class="glyphicon glyphicon-chevron-up"></span></a></p>
-  </div> -->
   <p>The Power Hour &copy;. Website created by <a href="https://gvzq.github.io/">Gerardo Vazquez</a></p>
 </footer>
 
-<!-- Smooth Scrolling -->
+<!-- Timer -->
 <script>
-$(document).ready(function(){
-  // Add scrollspy to <body>
-  $('body').scrollspy({target: ".navbar", offset: 50});
+second = 60;
+count = 0;
+var quit;
+pause = false;
 
-  // Add smooth scrolling on all links inside the navbar
-  $("#myNavbar a").on('click', function(event) {
-    // Make sure this.hash has a value before overriding default behavior
-    if (this.hash !== "") {
-      // Prevent default anchor click behavior
-      event.preventDefault();
+function start() {
+    quit = setInterval("seconds()",1000);
+}
+function seconds(){
+    if (!pause){
+        second--;
+        document.getElementById('sec').innerHTML = second;
+        if (second == 0){
+            second = 60;
+            count++;
+            document.getElementById('cnt').innerHTML = count;
+        }
+        if (count == 60){
+            stop();
+        }
+    }
+}
+function wait(){
+    if (pause == true){
+        document.getElementById('wait').innerHTML = "Pause";
+    }
+    else {
+        document.getElementById('wait').innerHTML = "Resume";
+    }
+    pause = !pause;
+}
+function stop(){
+    document.getElementById('sec').innerHTML = 0;
+    document.getElementById('cnt').innerHTML = 0;
+    clearInterval(quit);
+}
 
-      // Store hash
-      var hash = this.hash;
-
-      // Using jQuery's animate() method to add smooth page scroll
-      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
-      $('html, body').animate({
-        scrollTop: $(hash).offset().top
-      }, 800, function(){
-
-        // Add hash (#) to URL when done scrolling (default click behavior)
-        window.location.hash = hash;
-      });
-    } // End if
-  });
-
-  // // Add smooth phase on all pictures
-  // $(window).scroll(function() {
-  //   $(".slideanim").each(function(){
-  //     var pos = $(this).offset().top;
-  //
-  //     var winTop = $(window).scrollTop();
-  //       if (pos < winTop + 600) {
-  //         $(this).addClass("slide");
-  //       }
-  //   });
-  // });
-});
 </script>
 </body>
 </html>
