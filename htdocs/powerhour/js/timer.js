@@ -8,7 +8,6 @@ on = false;
 function start() {
     if (!on){
         quit = setInterval("seconds()",1000);
-        audio = new Audio('msc/beer_can_opening.aac');
         on = true;
         second = 3;
         count = 0;
@@ -21,7 +20,7 @@ function seconds(){
         document.getElementById('sec').innerHTML = second;
         if (second == 0){
             second = 3;
-            audio.play();       // play sound
+            document.getElementById('audio').play();
             count++;
             drinkAlert();       //drink alert
             progressUpdate();   //progress bar

@@ -8,25 +8,16 @@
   <meta name="description" content="The Power Hour Web App. Enjoy the power hour drinking game without the hassle of installing a thing- all of this with an elegant design.">
   <meta name="author" content="Gerardo Vazquez">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
   <link href="https://bootswatch.com/flatly/bootstrap.css" rel="stylesheet">
   <link href="css/custom.css" rel="stylesheet">
+
   <script src="js/timer.js"></script>
-  <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </head>
-<script>
-      var soundID = "Thunder";
 
-      function loadSound () {
-        createjs.Sound.registerSound("js/sounds/beer_can_opening.ogg", soundID);
-      }
-
-      function playSound () {
-        createjs.Sound.play(soundID);
-      }
-    </script>
 <body class="row">
 <!-- Navbar -->
 <nav class="navbar navbar-default navbar-fixed-top text-center">
@@ -54,41 +45,43 @@
     <button class="btn btn-success" id="start" type="button" onclick="start()">Start</button> <!-- data-toggle="tooltip" data-placement="bottom" title="Play the game!"  -->
     <button class="btn btn-warning" id="pause" type="button" onclick="wait()" style="display: none"><span id="wait">Pause</span></button> <!-- data-toggle="tooltip" data-placement="left" title="Take a break and continue later. Resume to continue."  -->
     <button class="btn btn-danger" id="stop" type="button" onclick="stop()" style="display: none">Stop</button> <!-- data-toggle="tooltip" data-placement="right" title="Quit and erase progress." -->
-
-    <!-- Modal -->
-    <div class="modal fade" id="donate" role="dialog" aria-labelledby="Congrats and Donate">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">
-                    Congratulations! <i class="fa fa-beer fa-2x"></i>
-                </h4>
-                </div>
-                <div class="modal-body">
-                    I hoped you enjoyed this game.<br>
-                    Please consider donating.<i class="fa fa-smile-o" aria-hidden="true"></i><br>
-                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-    					<input type="hidden" name="cmd" value="_s-xclick">
-    					<input type="hidden" name="hosted_button_id" value="75Q5MGMY39JA6">
-    					<input type="image" src="https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif" name="submit" alt="PayPal – The safer, easier way to pay online.">
-    					<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-    				</form>
-                    Do not drink and drive.
-
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <!-- <button type="button" class="btn btn-primary">Donate</button> -->
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 
 <!-- Footer -->
 <footer class="container-fluid bg-4 text-center">
   <p>The Power Hour &copy;. Designed by <a href="https://gvzq.github.io/">Gerardo Vazquez</a></p>
 </footer>
+
+<!-- ************************************************* -->
+<!-- Audio -->
+<audio id="audio" src="msc/loud-clock-short.mp3"></audio>
+<!-- Modal -->
+<div class="modal fade text-center" id="donate" role="dialog" aria-labelledby="Congrats and Donate">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">
+                Congratulations!
+            </h4>
+            </div>
+            <div class="modal-body">
+                <i class="fa fa-beer fa-flip-horizontal fa-2x"></i><br>
+                I hoped you enjoyed this game.<br>
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="hosted_button_id" value="75Q5MGMY39JA6">
+                    <input type="image" src="https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif" name="submit" alt="PayPal – The safer, easier way to pay online.">
+                    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                </form>
+                Do not drink and drive.
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <!-- <button type="button" class="btn btn-primary">Donate</button> -->
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
