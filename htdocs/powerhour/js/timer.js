@@ -8,7 +8,7 @@ function start() {
     if (!on){
         quit = setInterval("seconds()",1000);
         on = true;
-        second = 1;
+        second = 60;
         count = 0;
         startUtil();
     }
@@ -18,12 +18,12 @@ function seconds(){
         second--;
         document.getElementById('sec').innerHTML = second;
         if (second == 0){
-            second = 1;
+            second = 60;
             count++;
             drinkAlert();       //drink alert
             progressUpdate();    //progress bar
         }
-        if (count == 1){
+        if (count == 60){
             //congrats and donate
             $('#donate').modal('show');
             clean();
