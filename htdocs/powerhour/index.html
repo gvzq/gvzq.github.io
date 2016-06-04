@@ -38,9 +38,10 @@
     <div class="drink-alert"></div>
     <p id="one-time"><strong>Let the games begin!</strong></p>
     <!-- Buttons -->
-    <a class="btn btn-success" id="start" type="button" onclick="start()">Start</a>
-    <a class="btn btn-warning" id="pause" type="button" onclick="wait()"><span id="wait">Pause</span></a>
-    <a class="btn btn-danger" id="stop" type="button" onclick="stop()">Stop</a>
+    <script>$(function() {$('[data-toggle="tooltip"]').tooltip()})</script>
+    <button class="btn btn-success" id="start" data-toggle="tooltip" data-placement="bottom" title="Play the game!" type="button" onclick="start()">Start</button>
+    <button class="btn btn-warning" id="pause" data-toggle="tooltip" data-placement="left" title="Take a break and continue later. Resume to continue." type="button" onclick="wait()" style="display: none"><span id="wait">Pause</span></button>
+    <button class="btn btn-danger" id="stop" data-toggle="tooltip" data-placement="right" title="Quit and erase progress."type="button" onclick="stop()" style="display: none">Stop</button>
 </div>
 
 <!-- Footer -->
