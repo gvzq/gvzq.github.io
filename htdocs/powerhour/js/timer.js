@@ -18,15 +18,16 @@ function start() {
 function seconds(){
     if (!pause){
         second--;
-        audio.play();       // play sound
         document.getElementById('sec').innerHTML = second;
         if (second == 0){
+            audio.play();       // play sound
             second = 60;
             count++;
             drinkAlert();       //drink alert
             progressUpdate();   //progress bar
         }
         if (count == 60){
+            audio.play();       // play sound
             //congrats and donate
             $('#donate').modal('show');
             clean();
