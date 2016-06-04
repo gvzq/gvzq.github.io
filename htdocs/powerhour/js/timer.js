@@ -8,7 +8,7 @@ on = false;
 function start() {
     if (!on){
         quit = setInterval("seconds()",1000);
-        audio = new Audio('msc/beer_can_opening.acc');
+        audio = new Audio('msc/beer_can_opening.aac');
         on = true;
         second = 3;
         count = 0;
