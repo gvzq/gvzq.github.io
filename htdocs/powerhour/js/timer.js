@@ -1,6 +1,7 @@
 var second;
 var count;
 var quit;
+var audio;
 pause = false;
 on = false;
 
@@ -11,17 +12,19 @@ function start() {
         second = 60;
         count = 0;
         startUtil();
+        audio = new Audio('msc/beer_can_opening.mp3');
     }
 }
 function seconds(){
     if (!pause){
         second--;
+        audio.play();       // play sound
         document.getElementById('sec').innerHTML = second;
         if (second == 0){
             second = 60;
             count++;
             drinkAlert();       //drink alert
-            progressUpdate();    //progress bar
+            progressUpdate();   //progress bar
         }
         if (count == 60){
             //congrats and donate
