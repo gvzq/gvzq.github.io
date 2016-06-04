@@ -1,100 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>The Power Hour Drinking Game</title>
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="Power Hour">
-  <meta name="description" content="">
-  <meta name="author" content="Gerardo Vazquez">
+  <title>The Power Hour Game</title>
   <meta charset="utf-8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Power Hour App">
+  <meta name="description" content="The Power Hour Web App. Enjoy the power hour drinking game without the hassle of installing a thing- all of this with an elegant design.">
+  <meta name="author" content="Gerardo Vazquez">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://bootswatch.com/flatly/bootstrap.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <link href="css/custom.css" rel="stylesheet">
+  <script src="js/bootbox.js"></script>
+  <script src="js/timer.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </head>
-
+<body class="row">
 <!-- Navbar -->
 <nav class="navbar navbar-default navbar-fixed-top text-center">
   <div class="container">
       <a class="navbar-brand">Power Hour</a>
-    </div>
   </div>
 </nav>
 
 <!-- Jumbotron -->
 <div class="jumbotron text-center">
-  <h1>Power Hour</h1>
-  <h1 id="sec">0</h1>
-  <h2><span id="cnt">0</span> of 60</h4>
-  <!-- Alert -->
-  <p><strong>Let the games begin!</strong></p>
-  <!-- Buttons -->
-  <a class="btn btn-success" id="start" type="button" onclick="start()">Start</a>
-  <a class="btn btn-warning" id="pause" type="button" onclick="wait()"><span id="wait">Pause</span></a>
-  <a class="btn btn-danger" id="stop" type="button" onclick="stop()">Stop</a>
-
-  <!-- Progress Bars -->
+    <h1>Power Hour</h1>
+    <h1 id="sec">0</h1>
+    <h2><span id="cnt">0</span> of 60</h4>
+    <!-- Progress Bars -->
+    <div class="progress">
+        <div class="progress-bar progress-bar-success" role="progress-bar" id="progress" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+            <span class="sr-only">Game Complete</span>
+        </div>
+    </div>
+    <!-- Alert -->
+    <div class="drink-alert"></div>
+    <p><strong>Let the games begin!</strong></p>
+    <!-- Buttons -->
+    <a class="btn btn-success" id="start" type="button" onclick="start()">Start</a>
+    <a class="btn btn-warning" id="pause" type="button" onclick="wait()"><span id="wait">Pause</span></a>
+    <a class="btn btn-danger" id="stop" type="button" onclick="stop()">Stop</a>
 </div>
 
 <!-- Footer -->
 <footer class="container-fluid bg-4 text-center">
-  <p>The Power Hour &copy;. Website created by <a href="https://gvzq.github.io/">Gerardo Vazquez</a></p>
+  <p>The Power Hour &copy;. Designed by <a href="https://gvzq.github.io/">Gerardo Vazquez</a></p>
 </footer>
-
-<!-- Timer -->
-<script>
-second = 60;
-count = 0;
-var quit;
-pause = false;
-on = false;
-
-function start() {
-    if (!on){
-        quit = setInterval("seconds()",1000);
-        on = true;
-    }
-}
-function seconds(){
-    if (!pause){
-        second--;
-        document.getElementById('sec').innerHTML = second;
-        if (second == 0){
-            second = 60;
-            count++;
-            document.getElementById('cnt').innerHTML = count;
-        }
-        if (count == 60){
-            stop();
-        }
-    }
-}
-function wait(){
-    if (pause == true){
-        document.getElementById('wait').innerHTML = "Pause";
-    }
-    else {
-        document.getElementById('wait').innerHTML = "Resume";
-    }
-    pause = !pause;
-}
-function stop(){
-    clearInterval(quit);
-    on = false;
-    document.getElementById('sec').innerHTML = 0;
-    if (count == 60){
-        var res = confirm("Congratulations!\nDo you want to play again?");
-        if (res == true) {
-            start();
-        } else {
-            //nothing maybe donate?
-        }
-    }
-    document.getElementById('cnt').innerHTML = 0;
-}
-</script>
-
 </body>
 </html>

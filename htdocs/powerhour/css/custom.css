@@ -1,5 +1,5 @@
 body {
-    font: 400 15px Lato, sans-serif;
+    font: 400 15px sans-serif;
     line-height: 1.8;
 }
 h2 {
@@ -15,11 +15,11 @@ h4 {
     margin-bottom: 30px;
 }
 .jumbotron {
-    padding: 100px 25px;
-    font-family: Montserrat, sans-serif;
+    padding: 75px 25px;
+    font-family: sans-serif;
 }
 .container-fluid {
-    padding: 60px 50px;
+    padding: 50px 25px;
 }
 .bg-grey {
     background-color: #f6f6f6;
