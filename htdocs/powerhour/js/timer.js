@@ -9,7 +9,7 @@ function start() {
     if (!on){
         quit = setInterval("seconds()",1000);
         on = true;
-        second = 3;
+        second = 60;
         count = 0;
         startUtil();
     }
@@ -19,13 +19,13 @@ function seconds(){
         second--;
         document.getElementById('sec').innerHTML = second;
         if (second == 0){
-            second = 3;
+            second = 60;
             document.getElementById('audio').play();
             count++;
             drinkAlert();       //drink alert
             progressUpdate();   //progress bar
         }
-        if (count == 3){
+        if (count == 60){
             //congrats and donate
             $('#donate').modal('show');
             clean();
@@ -76,7 +76,7 @@ function drinkAlert(){
 function progressUpdate(){
     //update progress
     document.getElementById('cnt').innerHTML = count;
-    $('.progress-bar').css('width', (count/3)*100 +'%').attr('aria-valuenow', count);
+    $('.progress-bar').css('width', (count/60)*100 +'%').attr('aria-valuenow', count);
 }
 function startUtil(){
     //reset
