@@ -8,7 +8,7 @@ function start() {
     if (!on){
         quit = setInterval("seconds()",1000);
         on = true;
-        second = 5;
+        second = 1;
         count = 0;
         startUtil();
     }
@@ -18,13 +18,15 @@ function seconds(){
         second--;
         document.getElementById('sec').innerHTML = second;
         if (second == 0){
-            second = 5;
+            second = 1;
             count++;
             drinkAlert();       //drink alert
             progressUpdate();    //progress bar
         }
-        if (count == 5){
-            stop();
+        if (count == 1){
+            //congrats and donate
+            $('#donate').modal('show');
+            clean();
         }
     }
 }
@@ -39,24 +41,23 @@ function wait(){
 }
 function stop(){
     if (on && !pause){
-        //are you sure yes or no modal
-
-        // Dismissible popover saying to unpause
-        // $(".drink-alert").prepend(
-        //     "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\">" +
-        //     "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-        //     "<strong>Please unpause</strong>.</div>"
-        // );
-        clean();
+        var r = confirm("Do you really want to exit? Press OK to quit.");
+        if (r == true) {
+            clean();
+        } else {
+            // Dismissible popover saying to unpause
+            pause = true;
+            $(".drink-alert").prepend(
+                "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\">" +
+                "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<strong>Game has been pause. Please press resume.</strong>.</div>"
+            );
+        }
     }else{
         clean();
     }
 }
 function clean(){
-    if (count == 5){
-        //congrats and donate
-
-    }
     clearInterval(quit);
     on = false;
     pause = false;

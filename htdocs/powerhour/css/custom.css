@@ -14,6 +14,9 @@ h4 {
     font-weight: 400;
     margin-bottom: 30px;
 }
+.modal{
+    padding: 75px 25px;
+}
 .jumbotron {
     padding: 75px 25px;
     font-family: sans-serif;
