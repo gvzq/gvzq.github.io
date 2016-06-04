@@ -9,7 +9,7 @@ function start() {
     if (!on){
         quit = setInterval("seconds()",1000);
         on = true;
-        second = 2;
+        second = 60;
         count = 0;
         startUtil();
         audio = new Audio('msc/beer_can_opening.mp3');
@@ -21,12 +21,12 @@ function seconds(){
         document.getElementById('sec').innerHTML = second;
         if (second == 0){
             audio.play();       // play sound
-            second = 2;
+            second = 60;
             count++;
             drinkAlert();       //drink alert
             progressUpdate();   //progress bar
         }
-        if (count == 2){
+        if (count == 60){
             //congrats and donate
             $('#donate').modal('show');
             clean();
@@ -77,7 +77,7 @@ function drinkAlert(){
 function progressUpdate(){
     //update progress
     document.getElementById('cnt').innerHTML = count;
-    $('.progress-bar').css('width', (count/2)*100 +'%').attr('aria-valuenow', count);
+    $('.progress-bar').css('width', (count/60)*100 +'%').attr('aria-valuenow', count);
 }
 function startUtil(){
     //reset
