@@ -11,6 +11,7 @@ function start() {
         on = true;
         second = 60;
         count = 0;
+        audio = document.getElementById('audio');
         startUtil();
     }
 }
@@ -20,7 +21,7 @@ function seconds(){
         document.getElementById('sec').innerHTML = second;
         if (second == 0){
             second = 60;
-            document.getElementById('audio').play();
+            audio.play();
             count++;
             drinkAlert();       //drink alert
             progressUpdate();   //progress bar
