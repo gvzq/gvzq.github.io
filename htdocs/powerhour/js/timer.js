@@ -1,16 +1,17 @@
 var second;
 var count;
 var quit;
-var audio;
-progress = true;    //TBU
-alerts = true;      //TBU
+// var audio;
+progress = true;
+sounds = true;    //TBU
+alerts = true;
 pause = false;
 
 function start() {
     quit = setInterval("seconds()",1000);
     second = 60;
     count = 0;
-    audio = document.getElementById('audio');
+    // audio = document.getElementById('audio');
     startUtil();
 }
 function seconds(){
@@ -19,9 +20,14 @@ function seconds(){
         document.getElementById('sec').innerHTML = second;
         if (second == 0){
             second = 60;
-            audio.play();
             count++;
-            drinkAlert();       //drink alert
+            if (sounds){
+                // audio.play();
+                ion.sound.play("beer_can_opening");
+            }
+            if (alerts){
+                drinkAlert();       //drink alert
+            }
             progressUpdate();   //progress bar
         }
         if (count == 60){
@@ -69,8 +75,12 @@ function drinkAlert(){
 }
 function progressUpdate(){
     //update progress
+    if (progress){
+        $('.progress-bar').css('width', (count/60)*100 +'%').attr('aria-valuenow', count);
+    }else{
+        $('.progress-bar').css('width', 0 +'%').attr('aria-valuenow', 0);
+    }
     document.getElementById('cnt').innerHTML = count;
-    $('.progress-bar').css('width', (count/60)*100 +'%').attr('aria-valuenow', count);
 }
 function startUtil(){
     //reset
@@ -89,4 +99,13 @@ function StopUtil(){
     //hide progress and alerts
     $(".drink-alert").empty();
     $('.progress-bar').css('width', 0 +'%').attr('aria-valuenow', 0);
+}
+function alertSett(){
+    alerts = !alerts;
+}
+function soundSett(){
+    sounds = !sounds;
+}
+function progressSett(){
+    progress = !progress;
 }

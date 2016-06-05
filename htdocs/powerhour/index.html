@@ -14,13 +14,45 @@
     <script src="js/timer.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="js/bootstrap-switch.js"></script>
+    <script src="js/ion.sound.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </head>
 
 <script>
 $(function() {
     $("#alerts").bootstrapSwitch();
+    $("#alerts").on('switchChange.bootstrapSwitch', function(event, state) {
+        alertSett();
+    });
+    $("#progressCheckbox").bootstrapSwitch();
+    $("#progressCheckbox").on('switchChange.bootstrapSwitch', function(event, state) {
+        progressSett();
+    });
     $("#sounds").bootstrapSwitch();
+    $("#sounds").on('switchChange.bootstrapSwitch', function(event, state) {
+        soundSett();
+    });
+});
+
+$(document).ready(function(){
+    ion.sound({
+        sounds: [
+            {name: "beer_can_opening"},
+            {name: "bell_ring"}
+        ],
+        path: "msc/sounds/",
+        preload: true,
+        volume: 1.0
+    });
+
+    $("#b01").on("click", function(){
+        ion.sound.play("beer_can_opening");
+    });
+
+    $("#b02").on("click", function(){
+        ion.sound.play("bell_ring");
+    });
+
 });
 </script>
 <body class="row text-center">
@@ -45,6 +77,12 @@ $(function() {
     <!-- Jumbotron -->
     <div class="jumbotron ">
       <div class="page-header">
+
+
+          <button id="b01">Play "beer_can_opening"</button>
+          <button id="b02">Play "bell_ring"</button>
+
+
           <h1>Power Hour</h1>
       </div>
       <h1 id="sec">0</h1>
@@ -120,8 +158,14 @@ $(function() {
           </div>
           <div class="modal-body">
               <p>
+                  Alert Messages:<br>
                   <input id="alerts" type="checkbox" checked><br>
+                  Progress Bar:<br>
+                  <input id="progressCheckbox" type="checkbox" checked><br>
+                  Sounds:<br>
                   <input id="sounds" type="checkbox" checked><br>
+                  Minutes:<br>
+                  <input id="minutes" type="checkbox" checked><br>
               </p>
           </div>
         </div>
