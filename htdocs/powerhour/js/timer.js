@@ -2,18 +2,16 @@ var second;
 var count;
 var quit;
 var audio;
+progress = true;    //TBU
+alerts = true;      //TBU
 pause = false;
-on = false;
 
 function start() {
-    if (!on){
-        quit = setInterval("seconds()",1000);
-        on = true;
-        second = 60;
-        count = 0;
-        audio = document.getElementById('audio');
-        startUtil();
-    }
+    quit = setInterval("seconds()",1000);
+    second = 60;
+    count = 0;
+    audio = document.getElementById('audio');
+    startUtil();
 }
 function seconds(){
     if (!pause){
@@ -43,26 +41,21 @@ function wait(){
     }
 }
 function stop(){
-    if (on && !pause){
-        var r = confirm("Do you really want to exit? Press OK to quit.");
-        if (r == true) {
-            clean();
-        } else {
-            // Dismissible popover saying to unpause
-            pause = true;
-            $(".drink-alert").prepend(
-                "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\">" +
-                "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                "<strong>Game has been pause. Please press resume.</strong>.</div>"
-            );
-        }
-    }else{
+    var r = confirm("Do you really want to exit? Press OK to quit.");
+    if (r == true) {
         clean();
+    } else {
+        // Dismissible popover saying to unpause
+        pause = true;
+        $(".drink-alert").prepend(
+            "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\">" +
+            "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+            "<strong>Game has been paused. Please press resume.</strong></div>"
+        );
     }
 }
 function clean(){
     clearInterval(quit);
-    on = false;
     pause = false;
     StopUtil();
 }
