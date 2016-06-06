@@ -37,18 +37,18 @@
     <!-- JavaScript -->
     <script src="js/timer.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-    <script src="js/bootstrap-switch.js"></script>
-    <script src="js/addtohomescreen.js"></script>
+    <script src="js/bootstrap-switch.min.js"></script>
+    <script src="js/addtohomescreen.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </head>
 
 <script>
 addToHomescreen({
     detectHomescreen: true,
-    // startDelay: 300,
-    // lifespan: 45,
-    displayPace: 0, 
-    // maxDisplayCount: 1
+    skipFirstVisit: true,
+    startDelay: 1860,
+    lifespan: 50,
+    maxDisplayCount: 3
 });
 $(function() {
     $("#alerts").bootstrapSwitch();
