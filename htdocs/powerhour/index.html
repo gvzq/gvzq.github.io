@@ -31,16 +31,21 @@
     <!-- CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
     <link href="https://bootswatch.com/flatly/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/addtohomescreen.css">
     <link href="css/custom.css" rel="stylesheet">
     <link href="css/bootstrap-switch.css" rel="stylesheet">
     <!-- JavaScript -->
     <script src="js/timer.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="js/bootstrap-switch.js"></script>
+    <script src="js/addtohomescreen.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </head>
 
 <script>
+addToHomescreen({
+    detectHomescreen: true
+});
 $(function() {
     $("#alerts").bootstrapSwitch();
     $("#alerts").on('switchChange.bootstrapSwitch', function(event, state) {
