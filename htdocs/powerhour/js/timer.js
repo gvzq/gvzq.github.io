@@ -1,7 +1,7 @@
 var second;
 var count;
 var quit;
-var audio;
+// var audio;
 progress = true;
 sounds = true;    //TBU
 alerts = true;
@@ -12,7 +12,7 @@ function start() {
     second = 60;
     count = 0;
     startUtil();
-    audio = document.getElementById('audio');
+    // audio = document.getElementById('audio');
 }
 function seconds(){
     if (!pause){
@@ -22,7 +22,7 @@ function seconds(){
             second = 60;
             count++;
             if (sounds){
-                audio.play();
+                // audio.play();
             }
             if (alerts){
                 drinkAlert();       //drink alert
