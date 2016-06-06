@@ -1,9 +1,8 @@
 var second;
 var count;
 var quit;
-// var audio;
 progress = true;
-sounds = true;    //TBU
+sounds = true;
 alerts = true;
 pause = false;
 
@@ -12,7 +11,6 @@ function start() {
     second = 60;
     count = 0;
     startUtil();
-    // audio = document.getElementById('audio');
 }
 function seconds(){
     if (!pause){
