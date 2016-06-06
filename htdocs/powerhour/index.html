@@ -35,23 +35,19 @@ $(function() {
     });
 });
 
-$(document).ready(function() {
-    $("#audio").get(0).play();
+// $(document).ready(function() {
+//     $("#audio").get(0).play();
+// });
+
+$(function(){
+    var button = document.getElementById('start');
+    var audio = document.getElementById('audio');
+    var onClick = function() {
+        audio.play(); // audio will load and then play
+    };
+    button.addEventListener('click', onClick, false);
 });
 
-// $(document).ready(function(){
-//     ion.sound({
-//         sounds: [
-//             {name: "loud_clock"},
-//             {name: "old_clock"},
-//             {name: "tick_tock"}
-//         ],
-//         path: "msc/sounds/",
-//         preload: true,
-//         volume: 1.0
-//     });
-//
-// });
 </script>
 <body class="row text-center">
     <!-- Navbar -->
@@ -89,7 +85,12 @@ $(document).ready(function() {
       <div class="drink-alert"></div>
       <p id="one-time"><strong>Let the games begin!</strong></p>
       <!-- Audio -->
-      <audio id="audio" src="./msc/loud_clock.wav"></audio>
+      <audio id="audio">
+          <source src="msc/loud_clock.acc" type="audio/acc" />
+          <source src="msc/loud_clock.ogg" type="audio/ogg" />
+          <source src="msc/loud_clock.wav" type="audio/wav">
+      </audio>
+      <!-- <audio id="audio" src="./msc/loud_clock.wav"></audio> -->
       <!-- Buttons -->
       <button class="btn btn-success" id="start" type="button" onclick="start()">Start</button>
       <button class="btn btn-warning" id="pause" type="button" onclick="wait()" style="display: none">

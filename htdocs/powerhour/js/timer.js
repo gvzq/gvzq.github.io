@@ -22,7 +22,7 @@ function seconds(){
             second = 60;
             count++;
             if (sounds){
-                // audio.play();
+                audio.play();
             }
             if (alerts){
                 drinkAlert();       //drink alert
