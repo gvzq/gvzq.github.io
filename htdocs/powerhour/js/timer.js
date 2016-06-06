@@ -1,7 +1,7 @@
 var second;
 var count;
 var quit;
-// var audio;
+var audio;
 progress = true;
 sounds = true;    //TBU
 alerts = true;
@@ -11,7 +11,7 @@ function start() {
     quit = setInterval("seconds()",1000);
     second = 60;
     count = 0;
-    // audio = document.getElementById('audio');
+    audio = document.getElementById('audio');
     startUtil();
 }
 function seconds(){
@@ -23,7 +23,6 @@ function seconds(){
             count++;
             if (sounds){
                 audio.play();
-                ion.sound.play("loud_clock");
             }
             if (alerts){
                 drinkAlert();       //drink alert

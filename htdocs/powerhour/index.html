@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
     <title>The Power Hour Game</title>
@@ -14,7 +15,7 @@
     <script src="js/timer.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="js/bootstrap-switch.js"></script>
-    <script src="js/ion.sound.js"></script>
+    <!-- <script src="js/ion.sound.js"></script> -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </head>
 
@@ -34,17 +35,17 @@ $(function() {
     });
 });
 
-$(document).ready(function(){
-    ion.sound({
-        sounds: [
-            {name: "loud_clock"},
-            {name: "old_clock"},
-            {name: "tick_tock"}
-        ],
-        path: "msc/sounds/",
-        preload: true,
-        volume: 1.0
-    });
+// $(document).ready(function(){
+//     ion.sound({
+//         sounds: [
+//             {name: "loud_clock"},
+//             {name: "old_clock"},
+//             {name: "tick_tock"}
+//         ],
+//         path: "msc/sounds/",
+//         preload: true,
+//         volume: 1.0
+//     });
 
 });
 </script>
@@ -106,7 +107,7 @@ $(document).ready(function(){
       </p>
     </footer>
     <!-- Audio -->
-    <audio id="audio" src="./msc/loud_clock.mp3"></audio>
+    <audio id="audio" src="./msc/loud_clock.wav"></audio>
     <!-- Modal Donate -->
     <div class="modal fade" id="donate" role="dialog" aria-labelledby="Congrats and Donate">
       <div class="modal-dialog" role="document">
