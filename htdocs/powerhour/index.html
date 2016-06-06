@@ -15,7 +15,6 @@
     <script src="js/timer.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="js/bootstrap-switch.js"></script>
-    <!-- <script src="js/ion.sound.js"></script> -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </head>
 
@@ -34,20 +33,6 @@ $(function() {
         soundSett();
     });
 });
-
-// $(document).ready(function(){
-//     ion.sound({
-//         sounds: [
-//             {name: "loud_clock"},
-//             {name: "old_clock"},
-//             {name: "tick_tock"}
-//         ],
-//         path: "msc/sounds/",
-//         preload: true,
-//         volume: 1.0
-//     });
-
-// });
 </script>
 <body class="row text-center">
     <!-- Navbar -->
@@ -84,6 +69,10 @@ $(function() {
       <!-- Alert -->
       <div class="drink-alert"></div>
       <p id="one-time"><strong>Let the games begin!</strong></p>
+      <!-- Audio -->
+      <audio id="audio" src="/msc/loud_clock.wav"></audio>
+      <button class="btn btn-info hidden-md-down" type="button" onclick="loadAudio()">Click if Mobile</button>
+
       <!-- Buttons -->
       <button class="btn btn-success" id="start" type="button" onclick="start()">Start</button>
       <button class="btn btn-warning" id="pause" type="button" onclick="wait()" style="display: none">
@@ -106,8 +95,7 @@ $(function() {
           <br>Designed by <a href="https://gvzq.github.io/">Gerardo Vazquez</a>
       </p>
     </footer>
-    <!-- Audio -->
-    <audio id="audio" src="./msc/loud_clock.wav"></audio>
+
     <!-- Modal Donate -->
     <div class="modal fade" id="donate" role="dialog" aria-labelledby="Congrats and Donate">
       <div class="modal-dialog" role="document">

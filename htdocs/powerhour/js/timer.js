@@ -11,8 +11,8 @@ function start() {
     quit = setInterval("seconds()",1000);
     second = 60;
     count = 0;
-    audio = document.getElementById('audio');
     startUtil();
+    audio = document.getElementById('audio');
 }
 function seconds(){
     if (!pause){
@@ -107,4 +107,8 @@ function soundSett(){
 }
 function progressSett(){
     progress = !progress;
+}
+function loadAudio(){
+    audio = document.getElementById('audio');
+    audio.play();
 }
