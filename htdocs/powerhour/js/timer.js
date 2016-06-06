@@ -22,8 +22,8 @@ function seconds(){
             second = 60;
             count++;
             if (sounds){
-                // audio.play();
-                ion.sound.play("loud_clock_short");
+                audio.play();
+                ion.sound.play("loud_clock");
             }
             if (alerts){
                 drinkAlert();       //drink alert
