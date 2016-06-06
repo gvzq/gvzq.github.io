@@ -23,7 +23,6 @@ function seconds(){
             count++;
             if (sounds){
                 // audio.play();
-                ion.sound.play("loud-clock-short");
             }
             if (alerts){
                 drinkAlert();       //drink alert

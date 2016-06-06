@@ -37,13 +37,20 @@ $(function() {
 $(document).ready(function(){
     ion.sound({
         sounds: [
-            {name: "loud-clock-short"},
-            {name: "old-clock-short"},
-            {name: "tick-tock-short"}
+            {name: "beer_can_opening"},
+            {name: "bell_ring"}
         ],
-        path: "msc/sounds/",
+        path: "sounds/",
         preload: true,
         volume: 1.0
+    });
+
+    $("#b01").on("click", function(){
+        ion.sound.play("beer_can_opening");
+    });
+
+    $("#b02").on("click", function(){
+        ion.sound.play("bell-ring");
     });
 });
 </script>
@@ -69,6 +76,10 @@ $(document).ready(function(){
     <!-- Jumbotron -->
     <div class="jumbotron ">
       <div class="page-header">
+          <button id="b01">Play "beer_can_opening"</button>
+
+          <button id="b02">Play "bell_ring"</button>
+
           <h1>Power Hour</h1>
       </div>
       <h1 id="sec">0</h1>
