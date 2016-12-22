@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Power Hour Drinking Game</title>
     <meta charset="utf-8">
@@ -10,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Icons -->
     <link rel='shortcut icon' type='image/x-icon' href='./favicon.ico' />
-	<link href="./favicon.ico" rel="icon" type="image/x-icon" />
+    <link href="./favicon.ico" rel="icon" type="image/x-icon" />
     <link rel="apple-touch-icon" sizes="57x57" href="./apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="./apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="./apple-icon-72x72.png">
@@ -20,7 +21,7 @@
     <link rel="apple-touch-icon" sizes="144x144" href="./apple-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="./apple-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="./apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="./android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="./android-icon-192x192.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="./favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
@@ -34,93 +35,57 @@
     <link rel="stylesheet" type="text/css" href="css/addtohomescreen.css">
     <link href="css/custom.css" rel="stylesheet">
     <link href="css/bootstrap-switch.css" rel="stylesheet">
-    <!-- JavaScript -->
-    <script src="js/timer.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-    <script src="js/bootstrap-switch.min.js"></script>
-    <script src="js/addtohomescreen.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
 </head>
 
-<script>
-addToHomescreen({
-    detectHomescreen: true,
-    skipFirstVisit: true,
-    startDelay: 1860,
-    lifespan: 50,
-    maxDisplayCount: 3
-});
-$(function() {
-    $("#alerts").bootstrapSwitch();
-    $("#alerts").on('switchChange.bootstrapSwitch', function(event, state) {
-        alertSett();
-    });
-    $("#progressCheckbox").bootstrapSwitch();
-    $("#progressCheckbox").on('switchChange.bootstrapSwitch', function(event, state) {
-        progressSett();
-    });
-    $("#sounds").bootstrapSwitch();
-    $("#sounds").on('switchChange.bootstrapSwitch', function(event, state) {
-        soundSett();
-    });
-});
-$(function(){
-    var button = document.getElementById('start');
-    var audio = document.getElementById('audio');
-    var onClick = function() {
-        audio.play(); // audio will load and then play
-    };
-    button.addEventListener('click', onClick, false);
-});
-</script>
 <body class="row text-center">
     <!-- Navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <a href="index.html" class="navbar-brand">Power Hour</a>
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">Power Hour</a>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
             <i class="fa fa-bars"></i>
           </button>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="rules.html">Rules</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="questionsandanswers.html">Q&amp;A</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="rules.html">Rules</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="questionsandanswers.html">Q&amp;A</a></li>
-          </ul>
-        </div>
-      </div>
     </nav>
     <!-- Jumbotron -->
     <div class="jumbotron ">
-      <div class="page-header">
-          <h1>Power Hour</h1>
-      </div>
-      <h1 id="sec">0</h1>
-      <h2><span id="cnt">0</span> of 60</h2>
-      <!-- Progress Bars -->
-      <div class="progress">
-        <div class="progress-bar progress-bar-success" role="progress-bar" id="progress" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-          <span class="sr-only">Game Complete</span>
+        <div class="page-header">
+            <h1>Power Hour</h1>
         </div>
-      </div>
-      <!-- Alert -->
-      <div class="drink-alert"></div>
-      <p id="one-time"><strong>Let the games begin!</strong></p>
-      <!-- Audio -->
-      <audio id="audio">
+        <h1 id="sec">0</h1>
+        <h2><span id="cnt">0</span> of 60</h2>
+        <!-- Progress Bars -->
+        <div class="progress">
+            <div class="progress-bar progress-bar-success" role="progress-bar" id="progress" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                <span class="sr-only">Game Complete</span>
+            </div>
+        </div>
+        <!-- Alert -->
+        <div class="drink-alert"></div>
+        <p id="one-time"><strong>Let the games begin!</strong></p>
+        <!-- Audio -->
+        <audio id="audio">
           <source src="msc/loud_clock.acc" type="audio/acc" />
           <source src="msc/loud_clock.ogg" type="audio/ogg" />
           <source src="msc/loud_clock.wav" type="audio/wav">
       </audio>
-      <!-- <audio id="audio" src="./msc/loud_clock.wav"></audio> -->
-      <!-- Buttons -->
-      <button class="btn btn-success" id="start" type="button" onclick="start()">Start</button>
-      <button class="btn btn-warning" id="pause" type="button" onclick="wait()" style="display: none">
+        <!-- <audio id="audio" src="./msc/loud_clock.wav"></audio> -->
+        <!-- Buttons -->
+        <button class="btn btn-success" id="start" type="button" onclick="start()">Start</button>
+        <button class="btn btn-warning" id="pause" type="button" onclick="wait()" style="display: none">
         <span id="wait">Pause</span>
       </button>
-      <button class="btn btn-danger" id="stop" type="button" onclick="stop()" style="display: none">Stop</button>
+        <button class="btn btn-danger" id="stop" type="button" onclick="stop()" style="display: none">Stop</button>
     </div>
     <button class="btn btn-lg btn-default" data-toggle="modal" data-target="#modal-switch">
         <i class="fa fa-cog"></i>
@@ -128,65 +93,116 @@ $(function(){
 
     <!-- Footer -->
     <footer class="container">
-      <p>
-          Copyright &copy;
-          <script>
-            document.write(new Date().getFullYear());
-          </script>
-          The Power Hour.
-          <br>Designed by <a href="https://gvzq.github.io/">Gerardo Vazquez</a>
-      </p>
+        <p>
+            Copyright &copy;
+            <script>
+                document.write(new Date().getFullYear());
+            </script>
+            The Power Hour.
+            <br>Designed by <a href="https://gvzq.github.io/">Gerardo Vazquez</a>
+        </p>
     </footer>
 
     <!-- Modal Donate -->
     <div class="modal fade" id="donate" role="dialog" aria-labelledby="Congrats and Donate">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
-            <h4 class="modal-title" id="myModalLabel">Congratulations!</h4>
-          </div>
-          <div class="modal-body">
-            <i class="fa fa-beer fa-flip-horizontal fa-2x"></i>
-            <br>Share this with your friends.
-            <!-- https://www.addtoany.com/ -->
-            <br>
-            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-              <input type="hidden" name="cmd" value="_s-xclick">
-              <input type="hidden" name="hosted_button_id" value="75Q5MGMY39JA6">
-              <input type="image" src="https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif" name="submit" alt="PayPal – The safer, easier way to pay online.">
-              <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-            </form>Do not drink and drive.</div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <!-- <button type="button" class="btn btn-primary">Donate</button> -->
-          </div>
+                    <h4 class="modal-title" id="myModalLabel">Congratulations!</h4>
+                </div>
+                <div class="modal-body">
+                    <i class="fa fa-beer fa-flip-horizontal fa-2x"></i>
+                    <br>Share this with your friends.
+                    <!-- https://www.addtoany.com/ -->
+                    <br>
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                        <input type="hidden" name="cmd" value="_s-xclick">
+                        <input type="hidden" name="hosted_button_id" value="75Q5MGMY39JA6">
+                        <input type="image" src="https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif" name="submit" alt="PayPal – The safer, easier way to pay online.">
+                        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                    </form>Do not drink and drive.</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <!-- <button type="button" class="btn btn-primary">Donate</button> -->
+                </div>
+            </div>
         </div>
-      </div>
     </div>
     <!-- Modal Settings -->
     <div class="modal fade" id="modal-switch" tabindex="-1" role="dialog" aria-labelledby="Settings">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" data-dismiss="modal" class="close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <div class="modal-title">Settings</div>
-          </div>
-          <div class="modal-body">
-              <p>
-                  Shot Notifications:<br>
-                  <input id="alerts" type="checkbox" checked><br>
-                  Progress Bar:<br>
-                  <input id="progressCheckbox" type="checkbox" checked><br>
-                  Alert Sound:<br>
-                  <input id="sounds" type="checkbox" checked><br>
-                  <!-- Minutes:<br>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" data-dismiss="modal" class="close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <div class="modal-title">Settings</div>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Shot Notifications:<br>
+                        <input id="alerts" type="checkbox" checked><br> Progress Bar:<br>
+                        <input id="progressCheckbox" type="checkbox" checked><br> Alert Sound:<br>
+                        <input id="sounds" type="checkbox" checked><br>
+                        <!-- Minutes:<br>
                   <input id="minutes" type="checkbox" checked><br> -->
-              </p>
-          </div>
+                    </p>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-</body></html>
+
+    <!-- JavaScript -->
+    <script src="js/timer.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="js/bootstrap-switch.min.js"></script>
+    <script src="js/addtohomescreen.min.js"></script>
+    <script src="js/NoSleep.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <script>
+        var noSleep = new NoSleep();
+
+        function enableNoSleep() {
+            noSleep.enable();
+            document.removeEventListener('touchstart', enableNoSleep, false);
+            console.log('enable no sleep');
+        }
+
+        document.addEventListener('touchstart', enableNoSleep, false);
+
+        addToHomescreen({
+            detectHomescreen: true,
+            skipFirstVisit: true,
+            startDelay: 1860,
+            lifespan: 50,
+            maxDisplayCount: 3
+        });
+        $(function() {
+            $("#alerts").bootstrapSwitch();
+            $("#alerts").on('switchChange.bootstrapSwitch', function(event, state) {
+                alertSett();
+            });
+            $("#progressCheckbox").bootstrapSwitch();
+            $("#progressCheckbox").on('switchChange.bootstrapSwitch', function(event, state) {
+                progressSett();
+            });
+            $("#sounds").bootstrapSwitch();
+            $("#sounds").on('switchChange.bootstrapSwitch', function(event, state) {
+                soundSett();
+            });
+        });
+        $(function() {
+            var button = document.getElementById('start');
+            var audio = document.getElementById('audio');
+            var onClick = function() {
+                audio.play(); // audio will load and then play
+            };
+            button.addEventListener('click', onClick, false);
+        });
+    </script>
+
+</body>
+
+</html>
