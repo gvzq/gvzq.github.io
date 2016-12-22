@@ -158,19 +158,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="js/bootstrap-switch.min.js"></script>
     <script src="js/addtohomescreen.min.js"></script>
-    <script src="js/NoSleep.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
     <script>
-        var noSleep = new NoSleep();
-
-        function enableNoSleep() {
-            noSleep.enable();
-            document.removeEventListener('touchstart', enableNoSleep, false);
-            console.log('enable no sleep');
-        }
-
-        document.addEventListener('touchstart', enableNoSleep, false);
+        var stayAwake = setInterval(function() {
+            location.href = location.href; //try refreshing
+            window.setTimeout(window.stop, 0); //stop it soon after
+        }, 30000);
 
         addToHomescreen({
             detectHomescreen: true,
