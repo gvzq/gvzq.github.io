@@ -35,45 +35,7 @@
     <link rel="stylesheet" type="text/css" href="css/addtohomescreen.css">
     <link href="css/custom.css" rel="stylesheet">
     <link href="css/bootstrap-switch.css" rel="stylesheet">
-    <!-- JavaScript -->
-    <script src="js/timer.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-    <script src="js/bootstrap-switch.min.js"></script>
-    <script src="js/addtohomescreen.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </head>
-
-<script>
-    addToHomescreen({
-        detectHomescreen: true,
-        skipFirstVisit: true,
-        startDelay: 1860,
-        lifespan: 50,
-        maxDisplayCount: 3
-    });
-    $(function() {
-        $("#alerts").bootstrapSwitch();
-        $("#alerts").on('switchChange.bootstrapSwitch', function(event, state) {
-            alertSett();
-        });
-        $("#progressCheckbox").bootstrapSwitch();
-        $("#progressCheckbox").on('switchChange.bootstrapSwitch', function(event, state) {
-            progressSett();
-        });
-        $("#sounds").bootstrapSwitch();
-        $("#sounds").on('switchChange.bootstrapSwitch', function(event, state) {
-            soundSett();
-        });
-    });
-    $(function() {
-        var button = document.getElementById('start');
-        var audio = document.getElementById('audio');
-        var onClick = function() {
-            audio.play(); // audio will load and then play
-        };
-        button.addEventListener('click', onClick, false);
-    });
-</script>
 
 <body class="row text-center">
     <!-- Navbar -->
@@ -118,12 +80,32 @@
       </audio>
         <!-- <audio id="audio" src="./msc/loud_clock.wav"></audio> -->
         <!-- Buttons -->
-        <button class="btn btn-success" id="start" type="button" onclick="start()">Start</button>
-        <button class="btn btn-warning" id="pause" type="button" onclick="wait()" style="display: none">
-        <span id="wait">Pause</span>
-      </button>
-        <button class="btn btn-danger" id="stop" type="button" onclick="stop()" style="display: none">Stop</button>
+        <button class="btn btn-success" id="start" type="button" onclick="startTimer()">Start</button>
+        <button class="btn btn-warning" id="pause" type="button" onclick="wait()" style="display: none"><span id="wait">Pause</span></button>
+        <button class="btn btn-danger" id="stop" type="button" onclick="stopTimer()" style="display: none">Stop</button>
     </div>
+    <script src="js/timer.js"></script>
+    <script>
+        if (localStorage.settings === "true") {
+            startUtil();
+            console.log('loading settings');
+            minutes = localStorage.minutes;
+            second = localStorage.second;
+            contTimer();
+        } else {
+            StopUtil();
+        }
+        var stayAwake = setInterval(function() {
+            console.log('saving settings');
+            if (localStorage.settings === "true") {
+                localStorage.minutes = minutes;
+                localStorage.second = second;
+            }
+
+            location.href = location.href; //try refreshing
+            window.setTimeout(window.stop, 0); //stop it soon after
+        }, 6009);
+    </script>
     <button class="btn btn-lg btn-default" data-toggle="modal" data-target="#modal-switch">
         <i class="fa fa-cog"></i>
     </button>
@@ -178,10 +160,12 @@
                 </div>
                 <div class="modal-body">
                     <p>
-                        Shot Notifications:<br>
-                        <input id="alerts" type="checkbox" checked><br> Progress Bar:<br>
-                        <input id="progressCheckbox" type="checkbox" checked><br> Alert Sound:<br>
-                        <input id="sounds" type="checkbox" checked><br>
+                        <!-- Shot Notifications:<br>
+                        <input id="alerts" type="checkbox" checked><br>  -->
+                        Progress Bar:</br>
+                        <input id="progressCheckbox" type="checkbox" checked></br>
+                        Alert Sound:<br>
+                        <input id="sounds" type="checkbox" checked></br>
                         <!-- Minutes:<br>
                   <input id="minutes" type="checkbox" checked><br> -->
                     </p>
@@ -189,6 +173,45 @@
             </div>
         </div>
     </div>
+
+    <!-- JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="js/bootstrap-switch.min.js"></script>
+    <script src="js/addtohomescreen.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <script>
+        addToHomescreen({
+            detectHomescreen: true,
+            skipFirstVisit: true,
+            startDelay: 1860,
+            lifespan: 50,
+            maxDisplayCount: 3
+        });
+        $(function() {
+            $("#alerts").bootstrapSwitch();
+            $("#alerts").on('switchChange.bootstrapSwitch', function(event, state) {
+                alertSett();
+            });
+            $("#progressCheckbox").bootstrapSwitch();
+            $("#progressCheckbox").on('switchChange.bootstrapSwitch', function(event, state) {
+                progressSett();
+            });
+            $("#sounds").bootstrapSwitch();
+            $("#sounds").on('switchChange.bootstrapSwitch', function(event, state) {
+                soundSett();
+            });
+        });
+        $(function() {
+            var button = document.getElementById('start');
+            var audio = document.getElementById('audio');
+            var onClick = function() {
+                audio.play(); // audio will load and then play
+            };
+            button.addEventListener('click', onClick, false);
+        });
+    </script>
+
 </body>
 
 </html>

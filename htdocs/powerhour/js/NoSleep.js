@@ -44,9 +44,13 @@
         if (ua.iOS) {
             this.disable();
             this.noSleepTimer = window.setInterval(function() {
+                console.log('sav min ' + minutes + ' sec ' + second);
+                localStorage.settings = true;
+                localStorage.minutes = minutes;
+                localStorage.second = second;
                 window.location.href = '/htdocs/powerhour/';
                 window.setTimeout(window.stop, 0);
-            }, duration || 15099);
+            }, duration || 1500);
         } else if (ua.Android) {
             this.noSleepVideo.play();
         }
