@@ -7,43 +7,45 @@ alerts = true;
 pause = false;
 
 function start() {
-    quit = setInterval("seconds()",1000);
+    quit = setInterval("seconds()", 1000);
     second = 60;
     count = 0;
     startUtil();
 }
-function seconds(){
-    if (!pause){
+
+function seconds() {
+    if (!pause) {
         second--;
         document.getElementById('sec').innerHTML = second;
-        if (second == 0){
+        if (second == 0) {
             second = 60;
             count++;
-            if (sounds){
+            if (sounds) {
                 audio.play();
             }
-            if (alerts){
-                drinkAlert();       //drink alert
+            if (alerts) {
+                drinkAlert(); //drink alert
             }
-            progressUpdate();   //progress bar
+            progressUpdate(); //progress bar
         }
-        if (count == 60){
+        if (count == 60) {
             //congrats and donate
             $('#donate').modal('show');
             clean();
         }
     }
 }
-function wait(){
+
+function wait() {
     pause = !pause;
-    if (pause){
+    if (pause) {
         document.getElementById('wait').innerHTML = "Resume";
-    }
-    else {
+    } else {
         document.getElementById('wait').innerHTML = "Pause";
     }
 }
-function stop(){
+
+function stop() {
     var r = confirm("Do you really want to exit? Press OK to quit.");
     if (r == true) {
         clean();
@@ -57,12 +59,14 @@ function stop(){
         );
     }
 }
-function clean(){
+
+function clean() {
     clearInterval(quit);
     pause = false;
     StopUtil();
 }
-function drinkAlert(){
+
+function drinkAlert() {
     //show drinks alert
     $(".drink-alert").append(
         "<div class=\"alert alert-success alert-dismissible\" role=\"alert\">" +
@@ -70,23 +74,26 @@ function drinkAlert(){
         "<strong>Drink</strong> shot number " + count + ".</div>"
     );
 }
-function progressUpdate(){
+
+function progressUpdate() {
     //update progress
-    if (progress){
-        $('.progress-bar').css('width', (count/60)*100 +'%').attr('aria-valuenow', count);
-    }else{
-        $('.progress-bar').css('width', 0 +'%').attr('aria-valuenow', 0);
+    if (progress) {
+        $('.progress-bar').css('width', (count / 60) * 100 + '%').attr('aria-valuenow', count);
+    } else {
+        $('.progress-bar').css('width', 0 + '%').attr('aria-valuenow', 0);
     }
     document.getElementById('cnt').innerHTML = count;
 }
-function startUtil(){
+
+function startUtil() {
     //reset
     document.getElementById('start').style.display = "none";
     document.getElementById('pause').style.display = "inline";
     document.getElementById('stop').style.display = "inline";
     document.getElementById('one-time').style.display = "none";
 }
-function StopUtil(){
+
+function StopUtil() {
     //reset of text and button
     document.getElementById('sec').innerHTML = 0;
     document.getElementById('cnt').innerHTML = 0;
@@ -95,18 +102,22 @@ function StopUtil(){
     document.getElementById('stop').style.display = "none";
     //hide progress and alerts
     $(".drink-alert").empty();
-    $('.progress-bar').css('width', 0 +'%').attr('aria-valuenow', 0);
+    $('.progress-bar').css('width', 0 + '%').attr('aria-valuenow', 0);
 }
-function alertSett(){
+
+function alertSett() {
     alerts = !alerts;
 }
-function soundSett(){
+
+function soundSett() {
     sounds = !sounds;
 }
-function progressSett(){
+
+function progressSett() {
     progress = !progress;
 }
-function loadAudio(){
+
+function loadAudio() {
     audio = document.getElementById('audio');
     audio.play();
 }

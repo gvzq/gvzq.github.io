@@ -156,16 +156,32 @@
     <!-- JavaScript -->
     <script src="js/timer.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+    <script src="js/NoSleep.js"></script>
+
+    <script>
+        var noSleep = new NoSleep();
+        var wakeLockEnabled = false;
+        var toggleEl = document.querySelector("#start");
+        toggleEl.addEventListener('click', function() {
+            if (!wakeLockEnabled) {
+                noSleep.enable(); // keep the screen on!
+                wakeLockEnabled = true;
+                toggleEl.value = "Wake Lock Enabled";
+            } else {
+                noSleep.disable(); // let the screen turn off.
+                wakeLockEnabled = false;
+                toggleEl.value = "Wake Lock Disabled";
+            }
+        }, false);
+    </script>
+
+
     <script src="js/bootstrap-switch.min.js"></script>
     <script src="js/addtohomescreen.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
     <script>
-        var stayAwake = setInterval(function() {
-            location.href = location.href; //try refreshing
-            window.setTimeout(window.stop, 0); //stop it soon after
-        }, 30000);
-
         addToHomescreen({
             detectHomescreen: true,
             skipFirstVisit: true,
