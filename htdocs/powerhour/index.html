@@ -39,6 +39,8 @@
 </head>
 
 <body class="row text-center">
+    <script src="NoSleep.js"></script>
+
     <!-- Navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -81,7 +83,24 @@
       </audio>
         <!-- <audio id="audio" src="./msc/loud_clock.wav"></audio> -->
         <!-- Buttons -->
-        <input class="btn btn-success" id="start" type="button" onclick="start()" value="Start">
+        <input class="btn btn-success" id="start" type="button" value="Start">
+        <script>
+            var noSleep = new NoSleep();
+            var wakeLockEnabled = false;
+            var toggleEl = document.querySelector("#start");
+            toggleEl.addEventListener('click', function() {
+                start();
+                if (!wakeLockEnabled) {
+                    noSleep.enable(); // keep the screen on!
+                    wakeLockEnabled = true;
+                    toggleEl.value = "Wake Lock Enabled";
+                } else {
+                    noSleep.disable(); // let the screen turn off.
+                    wakeLockEnabled = false;
+                    toggleEl.value = "Wake Lock Disabled";
+                }
+            }, false);
+        </script>
         <button class="btn btn-warning" id="pause" type="button" onclick="wait()" style="display: none">
         <span id="wait">Pause</span>
       </button>
@@ -156,25 +175,6 @@
     <!-- JavaScript -->
     <script src="js/timer.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-
-    <script>
-        var noSleep = new NoSleep();
-        var wakeLockEnabled = false;
-        var toggleEl = document.querySelector("#start");
-        toggleEl.addEventListener('click', function() {
-            if (!wakeLockEnabled) {
-                noSleep.enable(); // keep the screen on!
-                wakeLockEnabled = true;
-                toggleEl.value = "Wake Lock Enabled";
-            } else {
-                noSleep.disable(); // let the screen turn off.
-                wakeLockEnabled = false;
-                toggleEl.value = "Wake Lock Disabled";
-            }
-        }, false);
-    </script>
-
-
     <script src="js/bootstrap-switch.min.js"></script>
     <script src="js/addtohomescreen.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
