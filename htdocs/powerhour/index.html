@@ -35,12 +35,47 @@
     <link rel="stylesheet" type="text/css" href="css/addtohomescreen.css">
     <link href="css/custom.css" rel="stylesheet">
     <link href="css/bootstrap-switch.css" rel="stylesheet">
-
+    <!-- JavaScript -->
+    <script src="js/timer.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="js/bootstrap-switch.min.js"></script>
+    <script src="js/addtohomescreen.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </head>
 
-<body class="row text-center">
-    <script src="https://gvzq.github.io/htdocs/powerhour/NoSleep.js"></script>
+<script>
+    addToHomescreen({
+        detectHomescreen: true,
+        skipFirstVisit: true,
+        startDelay: 1860,
+        lifespan: 50,
+        maxDisplayCount: 3
+    });
+    $(function() {
+        $("#alerts").bootstrapSwitch();
+        $("#alerts").on('switchChange.bootstrapSwitch', function(event, state) {
+            alertSett();
+        });
+        $("#progressCheckbox").bootstrapSwitch();
+        $("#progressCheckbox").on('switchChange.bootstrapSwitch', function(event, state) {
+            progressSett();
+        });
+        $("#sounds").bootstrapSwitch();
+        $("#sounds").on('switchChange.bootstrapSwitch', function(event, state) {
+            soundSett();
+        });
+    });
+    $(function() {
+        var button = document.getElementById('start');
+        var audio = document.getElementById('audio');
+        var onClick = function() {
+            audio.play(); // audio will load and then play
+        };
+        button.addEventListener('click', onClick, false);
+    });
+</script>
 
+<body class="row text-center">
     <!-- Navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -53,7 +88,7 @@
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="rules.html">Rules</a></li>
-                    <li><a href="https://gvzq.github.io/htdocs/powerhour/contact.html">Contact</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                     <li><a href="questionsandanswers.html">Q&amp;A</a></li>
                 </ul>
             </div>
@@ -83,24 +118,7 @@
       </audio>
         <!-- <audio id="audio" src="./msc/loud_clock.wav"></audio> -->
         <!-- Buttons -->
-        <input class="btn btn-success" id="start" type="button" value="Start">
-        <script>
-            var noSleep = new NoSleep();
-            var wakeLockEnabled = false;
-            var toggleEl = document.querySelector("#start");
-            toggleEl.addEventListener('click', function() {
-                start();
-                if (!wakeLockEnabled) {
-                    noSleep.enable(); // keep the screen on!
-                    wakeLockEnabled = true;
-                    toggleEl.value = "Wake Lock Enabled";
-                } else {
-                    noSleep.disable(); // let the screen turn off.
-                    wakeLockEnabled = false;
-                    toggleEl.value = "Wake Lock Disabled";
-                }
-            }, false);
-        </script>
+        <button class="btn btn-success" id="start" type="button" onclick="start()">Start</button>
         <button class="btn btn-warning" id="pause" type="button" onclick="wait()" style="display: none">
         <span id="wait">Pause</span>
       </button>
@@ -171,46 +189,6 @@
             </div>
         </div>
     </div>
-
-    <!-- JavaScript -->
-    <script src="js/timer.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-    <script src="js/bootstrap-switch.min.js"></script>
-    <script src="js/addtohomescreen.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
-    <script>
-        addToHomescreen({
-            detectHomescreen: true,
-            skipFirstVisit: true,
-            startDelay: 1860,
-            lifespan: 50,
-            maxDisplayCount: 3
-        });
-        $(function() {
-            $("#alerts").bootstrapSwitch();
-            $("#alerts").on('switchChange.bootstrapSwitch', function(event, state) {
-                alertSett();
-            });
-            $("#progressCheckbox").bootstrapSwitch();
-            $("#progressCheckbox").on('switchChange.bootstrapSwitch', function(event, state) {
-                progressSett();
-            });
-            $("#sounds").bootstrapSwitch();
-            $("#sounds").on('switchChange.bootstrapSwitch', function(event, state) {
-                soundSett();
-            });
-        });
-        $(function() {
-            var button = document.getElementById('start');
-            var audio = document.getElementById('audio');
-            var onClick = function() {
-                audio.play(); // audio will load and then play
-            };
-            button.addEventListener('click', onClick, false);
-        });
-    </script>
-
 </body>
 
 </html>
