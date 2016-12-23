@@ -132,6 +132,6 @@ function progressSett() {
 }
 
 function loadAudio() {
-    audio = document.getElementById('audio');
-    audio.play();
+    // audio = document.getElementById('audio');
+    //audio.play();
 }

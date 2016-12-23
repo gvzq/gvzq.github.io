@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 
 <head>
@@ -10,8 +9,8 @@
     <meta name="author" content="Gerardo Vazquez">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Icons -->
-    <link rel='shortcut icon' type='image/x-icon' href='./favicon.ico' />
-    <link href="./favicon.ico" rel="icon" type="image/x-icon" />
+    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
+    <link href="./favicon.ico" rel="icon" type="image/x-icon">
     <link rel="apple-touch-icon" sizes="57x57" href="./apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="./apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="./apple-icon-72x72.png">
@@ -39,19 +38,25 @@
 
 <body class="row text-center">
     <!-- Navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default">
         <div class="container">
-            <a href="index.html" class="navbar-brand">Power Hour</a>
+            <a href="index.html" class="navbar-brand">powerhourgame.us</a>
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-            <i class="fa fa-bars"></i>
-          </button>
+                        <i class="fa fa-bars"></i>
+                </button>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="rules.html">Rules</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="questionsandanswers.html">Q&amp;A</a></li>
+                    <li>
+                        <a href="rules.html">Rules</a>
+                    </li>
+                    <li>
+                        <a href="contact.html">Contact</a>
+                    </li>
+                    <li>
+                        <a href="questionsandanswers.html">Q&amp;A</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -62,7 +67,8 @@
             <h1>Power Hour</h1>
         </div>
         <h1 id="sec">0</h1>
-        <h2><span id="cnt">0</span> of 60</h2>
+        <h2>
+                <span id="cnt">0</span> of 60</h2>
         <!-- Progress Bars -->
         <div class="progress">
             <div class="progress-bar progress-bar-success" role="progress-bar" id="progress" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
@@ -71,17 +77,21 @@
         </div>
         <!-- Alert -->
         <div class="drink-alert"></div>
-        <p id="one-time"><strong>Let the games begin!</strong></p>
+        <p id="one-time">
+            <strong>Let the games begin!</strong>
+        </p>
         <!-- Audio -->
         <audio id="audio">
-          <source src="msc/loud_clock.acc" type="audio/acc" />
-          <source src="msc/loud_clock.ogg" type="audio/ogg" />
-          <source src="msc/loud_clock.wav" type="audio/wav">
-      </audio>
+                <source src="msc/loud_clock.acc" type="audio/acc">
+                <source src="msc/loud_clock.ogg" type="audio/ogg">
+                <source src="msc/loud_clock.wav" type="audio/wav">
+        </audio>
         <!-- <audio id="audio" src="./msc/loud_clock.wav"></audio> -->
         <!-- Buttons -->
         <button class="btn btn-success" id="start" type="button" onclick="startTimer()">Start</button>
-        <button class="btn btn-warning" id="pause" type="button" onclick="wait()" style="display: none"><span id="wait">Pause</span></button>
+        <button class="btn btn-warning" id="pause" type="button" onclick="wait()" style="display: none">
+                <span id="wait">Pause</span>
+            </button>
         <button class="btn btn-danger" id="stop" type="button" onclick="stopTimer()" style="display: none">Stop</button>
     </div>
     <script src="js/timer.js"></script>
@@ -106,30 +116,27 @@
             window.setTimeout(window.stop, 0); //stop it soon after
         }, 6009);
     </script>
-    <button class="btn btn-lg btn-default" data-toggle="modal" data-target="#modal-switch">
-        <i class="fa fa-cog"></i>
-    </button>
-
+    <!-- <button class="btn btn-lg btn-default" data-toggle="modal" data-target="#modal-switch">
+            <i class="fa fa-cog"></i>
+        </button> -->
     <!-- Footer -->
     <footer class="container">
-        <p>
-            Copyright &copy;
+        <p>Copyright ©
             <script>
                 document.write(new Date().getFullYear());
-            </script>
-            The Power Hour.
-            <br>Designed by <a href="https://gvzq.github.io/">Gerardo Vazquez</a>
+            </script>The Power Hour.
+            <br>Designed by
+            <a href="https://gvzq.github.io/">Gerardo Vazquez</a>
         </p>
     </footer>
-
     <!-- Modal Donate -->
     <div class="modal fade" id="donate" role="dialog" aria-labelledby="Congrats and Donate">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
+                            <span aria-hidden="true">×</span>
+                        </button>
                     <h4 class="modal-title" id="myModalLabel">Congratulations!</h4>
                 </div>
                 <div class="modal-body">
@@ -151,21 +158,25 @@
         </div>
     </div>
     <!-- Modal Settings -->
-    <div class="modal fade" id="modal-switch" tabindex="-1" role="dialog" aria-labelledby="Settings">
+    <div class="modal fade" id="modal-switch" role="dialog" aria-labelledby="Settings" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" data-dismiss="modal" class="close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <button type="button" data-dismiss="modal" class="close">
+                            <span aria-hidden="true">×</span>
+                            <span class="sr-only">Close</span>
+                        </button>
                     <div class="modal-title">Settings</div>
                 </div>
                 <div class="modal-body">
                     <p>
                         <!-- Shot Notifications:<br>
-                        <input id="alerts" type="checkbox" checked><br>  -->
-                        Progress Bar:</br>
-                        <input id="progressCheckbox" type="checkbox" checked></br>
-                        Alert Sound:<br>
-                        <input id="sounds" type="checkbox" checked></br>
+                        <input id="alerts" type="checkbox" checked><br>  -->Progress Bar:<br>
+                        <input id="progressCheckbox" type="checkbox" checked="">
+                        <br>Alert Sound:
+                        <br>
+                        <input id="sounds" type="checkbox" checked="">
+                        <br>
                         <!-- Minutes:<br>
                   <input id="minutes" type="checkbox" checked><br> -->
                     </p>
@@ -173,13 +184,11 @@
             </div>
         </div>
     </div>
-
     <!-- JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="js/bootstrap-switch.min.js"></script>
     <script src="js/addtohomescreen.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
     <script>
         addToHomescreen({
             detectHomescreen: true,
@@ -206,11 +215,12 @@
             var button = document.getElementById('start');
             var audio = document.getElementById('audio');
             var onClick = function() {
-                audio.play(); // audio will load and then play
+                //audio.play(); // audio will load and then play
             };
             button.addEventListener('click', onClick, false);
         });
     </script>
+
 
 </body>
 
