@@ -7,7 +7,7 @@
     <meta name="apple-mobile-web-app-title" content="Power Hour">
     <meta name="description" content="The Power Hour Web App. Enjoy the power hour drinking game without the hassle of installing a thing- all of this with an elegant design.">
     <meta name="author" content="Gerardo Vazquez">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <!-- Icons -->
     <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
     <link href="./favicon.ico" rel="icon" type="image/x-icon">
@@ -30,13 +30,14 @@
     <meta name="theme-color" content="#ffffff">
     <!-- CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://bootswatch.com/flatly/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/addtohomescreen.css">
     <link href="css/custom.css" rel="stylesheet">
     <link href="css/bootstrap-switch.css" rel="stylesheet">
 </head>
 
-<body class="row text-center">
+<body class="text-center">
     <!-- Navbar -->
     <nav class="navbar navbar-default">
         <div class="container">
@@ -62,13 +63,14 @@
         </div>
     </nav>
     <!-- Jumbotron -->
-    <div class="jumbotron ">
-        <div class="page-header">
-            <h1>Power Hour</h1>
-        </div>
+    <div class="row jumbotron ">
+
+        <h1>Power Hour</h1>
+
         <h1 id="sec">0</h1>
-        <h2>
-                <span id="cnt">0</span> of 60</h2>
+        <h3>
+                <span id="cnt">0</span> of 60
+        </h3>
         <!-- Progress Bars -->
         <div class="progress">
             <div class="progress-bar progress-bar-success" role="progress-bar" id="progress" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
@@ -215,7 +217,7 @@
             var button = document.getElementById('start');
             var audio = document.getElementById('audio');
             var onClick = function() {
-                //audio.play(); // audio will load and then play
+                audio.play(); // audio will load and then play
             };
             button.addEventListener('click', onClick, false);
         });
