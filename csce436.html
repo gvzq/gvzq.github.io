@@ -2,10 +2,9 @@
 <html>
 
 <head>
-    <title>Bus Routes</title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
+    <title>Remove Markers</title>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
     <style>
         /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -21,16 +20,84 @@
             margin: 0;
             padding: 0;
         }
+
+        #floating-panel {
+            position: absolute;
+            top: 10px;
+            left: 25%;
+            z-index: 5;
+            background-color: #fff;
+            padding: 5px;
+            border: 1px solid #999;
+            text-align: center;
+            font-family: 'Roboto', 'sans-serif';
+            line-height: 30px;
+            padding-left: 10px;
+        }
     </style>
 </head>
 
 <body>
+    <div id="floating-panel">
+        <input onclick="clearMarkers();" type=button value="Hide Markers">
+        <input onclick="showMarkers();" type=button value="Show All Markers">
+        <input onclick="deleteMarkers();" type=button value="Delete Markers">
+    </div>
     <div id="map"></div>
+    <p>Click on the map to add markers.</p>
     <script>
-        // Note: This example requires that you consent to location sharing when
-        // prompted by your browser. If you see the error "The Geolocation service
-        // failed.", it means you probably did not give permission for the browser to
-        // locate you.
+        // In the following example, markers appear when the user clicks on the map.
+        // The markers are stored in an array.
+        // The user can then click an option to hide, show or delete the markers.
+        var map;
+        var markers = [];
+        var busInterval;
+
+        function loadBus() {
+            busInterval = setInterval(function() {
+
+                $.ajax({
+                    "async": true,
+                    "crossDomain": true,
+                    "url": "http://transport.tamu.edu/BusRoutesFeed/api/route/06/buses/mentor",
+                    "method": "GET",
+                    "referer": "http://transport.tamu.edu/busroutes/Routes.aspx?r=06",
+                    "headers": {
+                        "cache-control": "no-cache"
+                    }
+                }).done(function(response) {
+                    console.log('Bus 12 #' + response.length);
+
+                    for (i = 0; i < response.length; i++) {
+                        var bus = response[i];
+                        var bus_gps = bus.GPS;
+
+                        // http://gis.tamu.edu/arcgis/rest/services/TS/TSbasemap092116/MapServer
+                        // FUCKING BASEMAP FROM ArcGIS
+                        // at console using 'MapController.baseMap'
+                        var newLat = rangeConvert(bus_gps.Lat, 3104399.864500001, 3115336.182, 30.5433295017282, 30.6484496070038) //gisLatCoordinate(bus_gps.Lat);
+                        var newLng = rangeConvert(bus_gps.Long, 1069337.9355999976, 1092433.6532000005, -96.4793830583237, -96.2382559121363) //gisLngCoordinate(bus_gps.Long);
+
+                        var bus_gps_latlong = {
+                            lat: newLat,
+                            lng: newLng
+                        }
+
+                        //console.log(bus_gps_latlong);
+                        //var latLng = new google.maps.LatLng(bus_gps.Lat, bus_gps.Long);
+                        addMarker(bus_gps_latlong, 0);
+                    }
+                });
+
+            }, 15000);
+
+            initMap();
+        }
+        //http://gis.tamu.edu/arcgis/rest/services/TS/TSbasemap092116/MapServer/info/iteminfo
+
+        function rangeConvert(OldValue, OldMin, OldMax, NewMin, NewMax) {
+            return (((OldValue - OldMin) * (NewMax - NewMin)) / (OldMax - OldMin)) + NewMin
+        }
 
         function initMap() {
 
@@ -39,21 +106,19 @@
                 lng: -96.3386624
             }
 
-            var map = new google.maps.Map(document.getElementById('map'), {
-                center: tamu,
+            map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 14,
-                minZoom: 15
+                minZoom: 15,
+                center: tamu,
+                mapTypeId: 'roadmap'
             });
 
-            var marker = new google.maps.Marker({
-                map: map
-            });
+            // This event listener will call addMarker() when the map is clicked.
+            // map.addListener('click', function(event) {
+            //     addMarker(event.latLng);
+            // });
 
-            var infoWindow = new google.maps.InfoWindow({
-                map: map
-            });
-
-            // Try HTML5 geolocation.
+            // Adds a marker at the user in the map using HTML5 geolocation.
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function(position) {
                     var pos = {
@@ -61,53 +126,63 @@
                         lng: position.coords.longitude
                     };
 
-                    marker.setPosition(pos);
+                    var marker = new google.maps.Marker({
+                        position: pos,
+                        map: map,
+                        icon: 'http://files.softicons.com/download/business-icons/flatastic-icons-part-4-by-custom-icon-design/png/24x24/user-blue.png'
+                    });
+                    //addMarker(pos, 1);
                     //infoWindow.setContent('Location found.');
                     //map.setCenter(pos);
                 }, function() {
-                    handleLocationError(true, infoWindow, map.getCenter());
+                    //handleLocationError(true, infoWindow, map.getCenter());
                 });
             } else {
                 // Browser doesn't support Geolocation
-                handleLocationError(false, infoWindow, map.getCenter());
+                //handleLocationError(false, infoWindow, map.getCenter());
             }
 
         }
 
-        var settings = {
-            "async": true,
-            "url": "http://transport.tamu.edu/BusRoutesFeed/api/route/27/buses/mentor",
-            "method": "GET"
+        //http://www.softicons.com/web-icons/awt-travel-blue-icons-by-awt-media/bus-icon
+        var iconList = [
+            'http://files.softicons.com/download/web-icons/awt-travel-blue-icons-by-awt-media/png/24x24/AWT-Bus.png',
+            'http://files.softicons.com/download/business-icons/flatastic-icons-part-4-by-custom-icon-design/png/24x24/user-blue.png'
+        ];
+        // Adds a marker to the map and push to the array.
+        function addMarker(location, icon) {
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map,
+                icon: iconList[icon]
+            });
+            markers.push(marker);
         }
 
-        $.ajax(settings).done(function(response) {
-            console.log(response);
-        });
+        // Sets the map on all markers in the array.
+        function setMapOnAll(map) {
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(map);
+            }
+        }
 
-        // $.ajax({
-        //     "async": true,
-        //     "crossDomain": true,
-        //     "url": "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=fe804ad9f6f5804bfac091808053c844&lat=" + localStorage.getItem("lat") + "&lon=" + localStorage.getItem("lon") + "&format=json&nojsoncallback=?",
-        //     "method": "GET"
-        // }).done(jsonFlickrApi);
-        //
-        // function jsonFlickrApi(rsp) {
-        //     var photos = rsp.photos.photo;
-        //
-        //     for (var i = 0; i < photos.length; i++) {
-        //
-        //         console.log('https://farm' + photos[i].farm + '.staticflickr.com/' + photos[i].server + '/' + photos[i].id + '_' + photos[i].secret + '_m.jpg');
-        //     }
-        // }
+        // Removes the markers from the map, but keeps them in the array.
+        function clearMarkers() {
+            setMapOnAll(null);
+        }
 
-        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-            infoWindow.setPosition(pos);
-            infoWindow.setContent(browserHasGeolocation ?
-                'Error: The Geolocation service failed.' :
-                'Error: Your browser doesn\'t support geolocation.');
+        // Shows any markers currently in the array.
+        function showMarkers() {
+            setMapOnAll(map);
+        }
+
+        // Deletes all markers in the array by removing references to them.
+        function deleteMarkers() {
+            clearMarkers();
+            markers = [];
         }
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpmJMWegkbS9iDHoMDHO8HbPhOcBNpqgk&callback=initMap">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpmJMWegkbS9iDHoMDHO8HbPhOcBNpqgk&callback=loadBus">
     </script>
 </body>
 
