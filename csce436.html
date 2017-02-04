@@ -61,7 +61,7 @@
                     "crossDomain": true,
                     "url": "https://transport.tamu.edu/BusRoutesFeed/api/route/06/buses/mentor",
                     "method": "GET",
-                    "referer": "https://transport.tamu.edu/busroutes/Routes.aspx?r=06",
+                    "referer": "http://transport.tamu.edu/busroutes/Routes.aspx?r=06",
                     "headers": {
                         "cache-control": "no-cache"
                     }
@@ -129,7 +129,7 @@
                     var marker = new google.maps.Marker({
                         position: pos,
                         map: map,
-                        icon: 'https://files.softicons.com/download/business-icons/flatastic-icons-part-4-by-custom-icon-design/png/24x24/user-blue.png'
+                        icon: 'http://files.softicons.com/download/business-icons/flatastic-icons-part-4-by-custom-icon-design/png/24x24/user-blue.png'
                     });
                     //addMarker(pos, 1);
                     //infoWindow.setContent('Location found.');
@@ -146,8 +146,8 @@
 
         //http://www.softicons.com/web-icons/awt-travel-blue-icons-by-awt-media/bus-icon
         var iconList = [
-            'https://files.softicons.com/download/web-icons/awt-travel-blue-icons-by-awt-media/png/24x24/AWT-Bus.png',
-            'https://files.softicons.com/download/business-icons/flatastic-icons-part-4-by-custom-icon-design/png/24x24/user-blue.png'
+            'http://files.softicons.com/download/web-icons/awt-travel-blue-icons-by-awt-media/png/24x24/AWT-Bus.png',
+            'http://files.softicons.com/download/business-icons/flatastic-icons-part-4-by-custom-icon-design/png/24x24/user-blue.png'
         ];
         // Adds a marker to the map and push to the array.
         function addMarker(location, icon) {
