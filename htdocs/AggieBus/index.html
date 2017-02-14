@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Aggie Bus Prototype</title>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">CSCE 436 AggieBus</span>
+        <input id="pac-input" type="text" class="form-control" placeholder="Enter destination" aria-describedby="basic-addon1">
+    </div>
+    <div id="map"></div>
+
+    <script>
+        var map;
+        var markers = [];
+        var busInterval;
+        var iconList = {
+            'bus': 'https://gvzq.github.io/images/bus.png',
+            'user': 'https://gvzq.github.io/images/user.png'
+        }; //http://fa2png.io/
+        var user_info = {};
+        var bus_stops = [];
+    </script>
+    <script src="utils.js"></script>
+    <script src="bus.js"></script>
+    <script src="map.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpmJMWegkbS9iDHoMDHO8HbPhOcBNpqgk&libraries=places&callback=initMap"></script>
+</body>
+
+</html>
