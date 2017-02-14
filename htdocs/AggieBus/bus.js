@@ -1,65 +1,29 @@
 
 // load bus stops from local JSON files (source: https://transport.tamu.edu/BusRoutesFeed/api/route/XX/pattern/)
 ["01", "02", "03", "04", "05", "06", "08", "09", "N_W04"].forEach(function(element) {
-    $.ajax({
-        "async": true,
-        "crossDomain": true,
-        "url": 'https://transport.tamu.edu/BusRoutesFeed/api/route/' + element + '/pattern/',
-        "method": "GET",
-        "referer": 'http://transport.tamu.edu/busroutes/Routes.aspx?r=' + element,
-        "headers": {
-            "cache-control": "no-cache"
-        }
-    }).done(function(json) {
-      // console.log(json);
-      json.forEach(function(stop) {
-          if (stop.Stop) {
-              // console.log(stop.Stop);
-              bus_stops.push({
-                  "code": element,
-                  "name": stop.Name,
-                  "stop": "true",
-                  "lat": rangeConvert(stop.Latitude, 3104399.864500001, 3115336.182, 30.5433295017282, 30.6484496070038),
-                  "lng": rangeConvert(stop.Longtitude, 1069337.9355999976, 1092433.6532000005, -96.4793830583237, -96.2382559121363)
 
-              });
-          } else {
-              bus_stops.push({
-                  "code": element,
-                  "name": stop.Name,
-                  "lat": rangeConvert(stop.Latitude, 3104399.864500001, 3115336.182, 30.5433295017282, 30.6484496070038),
-                  "lng": rangeConvert(stop.Longtitude, 1069337.9355999976, 1092433.6532000005, -96.4793830583237, -96.2382559121363)
-              });
-          }
+  bigArray[element].forEach(function(stop) {
+  // console.log(stop);
+    if (stop.Stop) {
+        // console.log(stop.Stop);
+        bus_stops.push({
+            "code": element,
+            "name": stop.Name,
+            "stop": "true",
+            "lat": rangeConvert(stop.Latitude, 3104399.864500001, 3115336.182, 30.5433295017282, 30.6484496070038),
+            "lng": rangeConvert(stop.Longtitude, 1069337.9355999976, 1092433.6532000005, -96.4793830583237, -96.2382559121363)
 
-      })
-    });
+        });
+    } else {
+        bus_stops.push({
+            "code": element,
+            "name": stop.Name,
+            "lat": rangeConvert(stop.Latitude, 3104399.864500001, 3115336.182, 30.5433295017282, 30.6484496070038),
+            "lng": rangeConvert(stop.Longtitude, 1069337.9355999976, 1092433.6532000005, -96.4793830583237, -96.2382559121363)
+        });
+    }
 
-    // $.getJSON("./busses/bus" + element + ".json", function(json) {
-    //     // console.log(json.ArrayOfPatternPoint.PatternPoint); // this will show the info it in firebug console
-        // json.ArrayOfPatternPoint.PatternPoint.forEach(function(stop) {
-        //     if (stop.Stop) {
-        //         // console.log(stop.Stop);
-        //         bus_stops.push({
-        //             "code": element,
-        //             "name": stop.Name,
-        //             "stop": "true",
-        //             "lat": rangeConvert(stop.Latitude, 3104399.864500001, 3115336.182, 30.5433295017282, 30.6484496070038),
-        //             "lng": rangeConvert(stop.Longtitude, 1069337.9355999976, 1092433.6532000005, -96.4793830583237, -96.2382559121363)
-        //
-        //         });
-        //     } else {
-        //         bus_stops.push({
-        //             "code": element,
-        //             "name": stop.Name,
-        //             "lat": rangeConvert(stop.Latitude, 3104399.864500001, 3115336.182, 30.5433295017282, 30.6484496070038),
-        //             "lng": rangeConvert(stop.Longtitude, 1069337.9355999976, 1092433.6532000005, -96.4793830583237, -96.2382559121363)
-        //         });
-        //     }
-        //
-        // })
-    // });
-
+  })
 });
 
 // loads bus location and adds marker to map
