@@ -4,7 +4,7 @@
     $.ajax({
         "async": true,
         "crossDomain": true,
-        "url": 'https://transport.tamu.edu/BusRoutesFeed/api/route/' + element + '/pattern/',
+        "url": 'http://transport.tamu.edu/BusRoutesFeed/api/route/' + element + '/pattern/',
         "method": "GET",
         "referer": 'http://transport.tamu.edu/busroutes/Routes.aspx?r=' + element,
         "headers": {
