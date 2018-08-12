@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Gerardo House Virtual Reality</title>
+    <meta name="description" content="Gerardo">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono" media="all" />
+    <script>
+        WebFont.load({
+            google: {
+                families: ["Roboto Mono"]
+            }
+        });
+    </script>
+    
+    <link rel="stylesheet" href="https://cdn.pannellum.org/2.4/pannellum.css"/>
+    <script type="text/javascript" src="https://cdn.pannellum.org/2.4/pannellum.js"></script>
+    <style>
+        #panorama {
+            width: auto;
+            height: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div id="panorama"></div>
+    <script>
+        pannellum.viewer('panorama', {   
+            "default": {
+                "firstScene": "LivingRoom",
+                "author": "Gerardo Vazquez",
+                "sceneFadeDuration": 1000, 
+                "autoLoad": true
+            },
+            
+            "scenes": {
+                "LivingRoom": {
+                    "title": "Living Room",
+                    "hfov": 100,
+                    "yaw": -100,
+                    "pitch": 15,
+                    "type": "equirectangular",
+                    "panorama": "LivingRoom.jpg",
+                    "hotSpots": [
+                    {
+                        "pitch": 3,
+                        "yaw": 145,
+                        "type": "scene",
+                        "text": "Diner Table",
+                        "sceneId": "DinerTable"
+                    },
+                    {
+                        "pitch": -2.1,
+                        "yaw": 45,
+                        "type": "scene",
+                        "text": "Stairs",
+                        "sceneId": "Stairs"
+                    }
+                    ]
+                },
+                "Kitchen": {
+                    "title": "Kitchen",
+                    "hfov": 100,
+                    "yaw": 5,
+                    "type": "equirectangular",
+                    "panorama": "Kitchen.JPG",
+                    "hotSpots": [
+                    {
+                        "pitch":0,
+                        "yaw": -140,
+                        "type": "scene",
+                        "text": "Diner Table",
+                        "sceneId": "DinerTable"
+                    }
+                    ]
+                },
+                "DinerTable": {
+                    "title": "Diner Table",
+                    "hfov": 100,
+                    "yaw": 5,
+                    "type": "equirectangular",
+                    "panorama": "DinerTable.jpg",
+                    "hotSpots": [
+                    {
+                        "pitch": 0,
+                        "yaw": 20,
+                        "type": "scene",
+                        "text": "Kitchen",
+                        "sceneId": "Kitchen",
+                        "targetYaw": -140,
+                        "targetPitch": 2
+                    },
+                    {
+                        "yaw": 110,
+                        "type": "scene",
+                        "text": "Living Room",
+                        "sceneId": "LivingRoom",
+                        "targetYaw": 145,
+                        "targetPitch": 2
+                    }
+                    ]
+                },
+                "Stairs": {
+                    "title": "Stairs",
+                    "hfov": 100,
+                    "yaw": 5,
+                    "type": "equirectangular",
+                    "panorama": "Stairs.JPG",
+                    "hotSpots": [
+                    {
+                        "yaw": 85,
+                        "type": "scene",
+                        "text": "Living Room",
+                        "sceneId": "LivingRoom",
+                        "targetYaw": 45,
+                        "targetPitch": 2
+                    }
+                    ]
+                }
+            }
+        });
+    </script>
+    
+</body>
+
+</html>
