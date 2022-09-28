@@ -1,19 +1,20 @@
 import { Navbar, Button } from "flowbite-react";
 import { Telephone } from 'react-bootstrap-icons';
 import { useRouter } from "next/router";
+import name from '../public/images/name.png'
 
 export default function Nav() {
     const router = useRouter();
     return (
         <Navbar fluid={true} rounded={true} >
             <Navbar.Brand href="/">
-                <img
-                    src="https://flowbite.com/docs/images/logo.svg"
+                {/* <img
+                    src={name.src}
                     className="mr-3 h-6 sm:h-9"
                     alt="Flowbite Logo"
-                />
-                <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-                    GERARDO
+                /> */}
+                <span className="self-center whitespace-nowrap text-xl font-black dark:text-white">
+                    GERA.
                 </span>
             </Navbar.Brand>
             <div className="flex md:order-2 gap-2">

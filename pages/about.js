@@ -1,5 +1,7 @@
-import Link from 'next/link'
+import ImageCard from '../components/imageCard';
 
 export default function About() {
-  return (null)
+  return (<div class="h-full">
+    <ImageCard />
+  </div>)
 }
