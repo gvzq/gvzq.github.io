@@ -9,9 +9,11 @@ import Link from 'next/link';
 const CallToAction = () => {
   return (
     <Link href='https://zcal.co/gerardo/gvzq.github.io'>
-      <Button size="xl" pill={true}>
-        Schedule a Meeting
-      </Button>
+      <a>
+        <Button size="xl" pill={true}>
+          Schedule a Meeting
+        </Button>
+      </a>
     </Link>
   )
 }
